@@ -379,7 +379,7 @@ if (document.getElementById('btnAgregar')) {
         localStorage.setItem('movimientos', JSON.stringify(movimientos));
 
         // Mostrar mensaje de confirmación y volver al menú principal
-        $('#mensaje').html('<div class="alert alert-success">Envío exitoso a ' + nombreSeleccionado + '. Redirigiendo a menú principal...</div>');
+        $('#mensaje').html('<div class="alert alert-success">Envío exitoso de $' + formatearMonto(monto) + ' a ' + nombreSeleccionado + '. Redirigiendo a menú principal...</div>');
 
         setTimeout(() => {
             window.location.href = 'menu.html';
@@ -441,7 +441,7 @@ if (document.getElementById('listaMovimientos')) {
             // Crear la fila con los detalles de la operación
             const fila = $('<tr></tr>').html(
                 '<td><span class="badge badge-movimiento ' + badge + ' me-2">' + getTipoTransaccion(movimiento.tipo) + '</span>' + movimiento.detalle + '</td>' +
-                '<td class="text-end monto-movimiento ' + clase + '">' + signo + '$' + movimiento.monto + '</td>'
+                '<td class="text-end monto-movimiento ' + clase + '">' + signo + '$' + formatearMonto(movimiento.monto) + '</td>'
             );
 
             $('#listaMovimientos').append(fila);
