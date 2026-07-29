@@ -77,24 +77,3 @@ main.container.app-card {
 .btn:active {
     transform: translateY(1px);
 }
-
-/* ===== Tabla de "Últimos Movimientos": mejora de visualización de datos ===== */
-#listaMovimientos td {
-    vertical-align: middle;
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
-}
-
-#listaMovimientos tr:hover {
-    background-color: rgba(var(--color-primary-rgb), 0.06);
-}
-
-.monto-movimiento {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-}
-
-.badge-movimiento {
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}

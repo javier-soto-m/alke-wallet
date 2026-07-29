@@ -1,8 +1,3 @@
-// Da formato de miles a un monto para mostrarlo de forma más legible (ej: 1000000 -> 1.000.000)
-function formatearMonto(monto) {
-    return Number(monto).toLocaleString('es-AR');
-}
-
 // ===== Página: Inicio de sesión (login.html) =====
 if (document.getElementById('loginForm')) {
     // Credenciales válidas de la demo
@@ -20,9 +15,6 @@ if (document.getElementById('loginForm')) {
         if (email === emailValido && password === passwordValida) {
             // Credenciales correctas: mostrar éxito y redirigir
             $('#mensaje').html('<div class="alert alert-success">Inicio de sesión exitoso. Redirigiendo...</div>');
-
-            // Deshabilitar el botón para evitar que se envíe el formulario más de una vez
-            $('#loginForm button[type="submit"]').prop('disabled', true);
 
             setTimeout(() => {
                 window.location.href = 'menu.html';
@@ -97,7 +89,7 @@ if (document.getElementById('formDeposito')) {
         saldoInicial = 1000000;
     }
 
-    $('#saldoActual').text('$' + formatearMonto(saldoInicial));
+    $('#saldoActual').text('$' + saldoInicial);
 
     // Evento del botón "Realizar depósito"
     $('#formDeposito').submit(function (evento) {
@@ -124,7 +116,7 @@ if (document.getElementById('formDeposito')) {
         localStorage.setItem('saldo', nuevoSaldo);
 
         // Actualizar el saldo mostrado en pantalla
-        $('#saldoActual').text('$' + formatearMonto(nuevoSaldo));
+        $('#saldoActual').text('$' + nuevoSaldo);
 
         // Leer la lista de movimientos guardada (si no existe, empezar con una lista vacía)
         let movimientos = localStorage.getItem('movimientos');
@@ -142,11 +134,11 @@ if (document.getElementById('formDeposito')) {
         localStorage.setItem('movimientos', JSON.stringify(movimientos));
 
         // Mostrar la leyenda con el monto depositado
-        $('#montoDepositado').html('<p class="text-center text-muted mb-2">Monto depositado: $' + formatearMonto(monto) + '</p>');
+        $('#montoDepositado').html('<p class="text-center text-muted mb-2">Monto depositado: $' + monto + '</p>');
 
         // Crear dinámicamente la alerta de Bootstrap con jQuery y agregarla al contenedor
         const alertaExito = $('<div class="alert alert-success"></div>')
-            .text('Depósito realizado con éxito. Nuevo saldo: $' + formatearMonto(nuevoSaldo) + '. Redirigiendo a menú principal...');
+            .text('Depósito realizado con éxito. Nuevo saldo: $' + nuevoSaldo + '. Redirigiendo a menú principal...');
         $('#alert-container').html(alertaExito);
 
         // Redirigir después de 2 segundos
@@ -379,7 +371,7 @@ if (document.getElementById('btnAgregar')) {
         localStorage.setItem('movimientos', JSON.stringify(movimientos));
 
         // Mostrar mensaje de confirmación y volver al menú principal
-        $('#mensaje').html('<div class="alert alert-success">Envío exitoso de $' + formatearMonto(monto) + ' a ' + nombreSeleccionado + '. Redirigiendo a menú principal...</div>');
+        $('#mensaje').html('<div class="alert alert-success">Envío exitoso a ' + nombreSeleccionado + '. Redirigiendo a menú principal...</div>');
 
         setTimeout(() => {
             window.location.href = 'menu.html';
@@ -430,18 +422,16 @@ if (document.getElementById('listaMovimientos')) {
             // Los depósitos suman y los envíos restan
             let signo = '+';
             let clase = 'text-success';
-            let badge = 'text-bg-success';
 
             if (movimiento.tipo === 'Envío') {
                 signo = '-';
                 clase = 'text-danger';
-                badge = 'text-bg-danger';
             }
 
             // Crear la fila con los detalles de la operación
             const fila = $('<tr></tr>').html(
-                '<td><span class="badge badge-movimiento ' + badge + ' me-2">' + getTipoTransaccion(movimiento.tipo) + '</span>' + movimiento.detalle + '</td>' +
-                '<td class="text-end monto-movimiento ' + clase + '">' + signo + '$' + formatearMonto(movimiento.monto) + '</td>'
+                '<td><strong>' + getTipoTransaccion(movimiento.tipo) + '</strong> - ' + movimiento.detalle + '</td>' +
+                '<td class="text-end ' + clase + '">' + signo + '$' + movimiento.monto + '</td>'
             );
 
             $('#listaMovimientos').append(fila);
