@@ -62,18 +62,9 @@ h1, h2, h3, h4, h5, .navbar-brand {
     width: 100%;
     max-width: 400px;
     border: none;
-    transition: box-shadow 0.2s ease;
 }
 
 /* sendmoney.html usa un layout más ancho (tabla de contactos) */
 main.container.app-card {
     max-width: 480px;
-}
-
-.btn {
-    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
-}
-
-.btn:active {
-    transform: translateY(1px);
 }
