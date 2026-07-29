@@ -16,6 +16,9 @@ if (document.getElementById('loginForm')) {
             // Credenciales correctas: mostrar éxito y redirigir
             $('#mensaje').html('<div class="alert alert-success">Inicio de sesión exitoso. Redirigiendo...</div>');
 
+            // Deshabilitar el botón para evitar que se envíe el formulario más de una vez
+            $('#loginForm button[type="submit"]').prop('disabled', true);
+
             setTimeout(() => {
                 window.location.href = 'menu.html';
             }, 1500);
