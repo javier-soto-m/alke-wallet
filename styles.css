@@ -1,0 +1,100 @@
+/* ===== Alke Wallet — Paleta de colores y tipografía ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Paleta de marca: navy (confianza/fintech) + verde (ingresos) + rojo (egresos) */
+    --color-primary: #123C6D;
+    --color-primary-dark: #061424;
+    --color-primary-rgb: 18, 60, 109;
+
+    --color-bg: #F3F6FA;
+    --color-bg-rgb: 243, 246, 250;
+
+    --color-text: #1B2430;
+
+    /* Reasignar variables de Bootstrap a nuestra paleta */
+    --bs-primary: var(--color-primary);
+    --bs-primary-rgb: var(--color-primary-rgb);
+    --bs-light: var(--color-bg);
+    --bs-light-rgb: var(--color-bg-rgb);
+
+    --bs-body-font-family: 'Inter', 'Segoe UI', sans-serif;
+    --bs-body-color: var(--color-text);
+    --bs-link-color: var(--color-primary);
+    --bs-link-hover-color: var(--color-primary-dark);
+
+    --bs-border-radius: 0.75rem;
+    --bs-border-radius-lg: 1rem;
+}
+
+body {
+    padding: 1.5rem 1rem;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+    font-weight: 600;
+}
+
+/* Botones y componentes que Bootstrap define con colores fijos (no heredan --bs-primary) */
+.btn-primary {
+    --bs-btn-bg: var(--color-primary);
+    --bs-btn-border-color: var(--color-primary);
+    --bs-btn-hover-bg: var(--color-primary-dark);
+    --bs-btn-hover-border-color: var(--color-primary-dark);
+    --bs-btn-active-bg: var(--color-primary-dark);
+    --bs-btn-active-border-color: var(--color-primary-dark);
+    --bs-btn-disabled-bg: var(--color-primary);
+    --bs-btn-disabled-border-color: var(--color-primary);
+    --bs-btn-focus-shadow-rgb: var(--color-primary-rgb);
+}
+
+.table-primary {
+    --bs-table-bg: rgba(var(--color-primary-rgb), 0.12);
+    --bs-table-striped-bg: rgba(var(--color-primary-rgb), 0.16);
+    --bs-table-hover-bg: rgba(var(--color-primary-rgb), 0.18);
+    --bs-table-active-bg: rgba(var(--color-primary-rgb), 0.22);
+    --bs-table-border-color: rgba(var(--color-primary-rgb), 0.3);
+    --bs-table-color: var(--color-text);
+}
+
+.app-card {
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    transition: box-shadow 0.2s ease;
+}
+
+/* sendmoney.html usa un layout más ancho (tabla de contactos) */
+main.container.app-card {
+    max-width: 480px;
+}
+
+.btn {
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* ===== Tabla de "Últimos Movimientos": mejora de visualización de datos ===== */
+#listaMovimientos td {
+    vertical-align: middle;
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+}
+
+#listaMovimientos tr:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.06);
+}
+
+.monto-movimiento {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.badge-movimiento {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
