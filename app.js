@@ -1,3 +1,8 @@
+// Da formato de miles a un monto para mostrarlo de forma más legible (ej: 1000000 -> 1.000.000)
+function formatearMonto(monto) {
+    return Number(monto).toLocaleString('es-AR');
+}
+
 // ===== Página: Inicio de sesión (login.html) =====
 if (document.getElementById('loginForm')) {
     // Credenciales válidas de la demo
@@ -92,7 +97,7 @@ if (document.getElementById('formDeposito')) {
         saldoInicial = 1000000;
     }
 
-    $('#saldoActual').text('$' + saldoInicial);
+    $('#saldoActual').text('$' + formatearMonto(saldoInicial));
 
     // Evento del botón "Realizar depósito"
     $('#formDeposito').submit(function (evento) {
@@ -119,7 +124,7 @@ if (document.getElementById('formDeposito')) {
         localStorage.setItem('saldo', nuevoSaldo);
 
         // Actualizar el saldo mostrado en pantalla
-        $('#saldoActual').text('$' + nuevoSaldo);
+        $('#saldoActual').text('$' + formatearMonto(nuevoSaldo));
 
         // Leer la lista de movimientos guardada (si no existe, empezar con una lista vacía)
         let movimientos = localStorage.getItem('movimientos');
@@ -137,11 +142,11 @@ if (document.getElementById('formDeposito')) {
         localStorage.setItem('movimientos', JSON.stringify(movimientos));
 
         // Mostrar la leyenda con el monto depositado
-        $('#montoDepositado').html('<p class="text-center text-muted mb-2">Monto depositado: $' + monto + '</p>');
+        $('#montoDepositado').html('<p class="text-center text-muted mb-2">Monto depositado: $' + formatearMonto(monto) + '</p>');
 
         // Crear dinámicamente la alerta de Bootstrap con jQuery y agregarla al contenedor
         const alertaExito = $('<div class="alert alert-success"></div>')
-            .text('Depósito realizado con éxito. Nuevo saldo: $' + nuevoSaldo + '. Redirigiendo a menú principal...');
+            .text('Depósito realizado con éxito. Nuevo saldo: $' + formatearMonto(nuevoSaldo) + '. Redirigiendo a menú principal...');
         $('#alert-container').html(alertaExito);
 
         // Redirigir después de 2 segundos
